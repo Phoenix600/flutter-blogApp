@@ -1,9 +1,12 @@
 import 'package:bloggy/core/theme/app_pallete.dart';
+import 'package:bloggy/feature/auth/presentation/pages/sigin_page.dart';
 import 'package:bloggy/feature/auth/presentation/widgets/auth_field.dart';
 import 'package:bloggy/feature/auth/presentation/widgets/auth_gradient_button.dart';
 import 'package:flutter/material.dart';
 
+/// Class Creating the account of the user
 class SignupPage extends StatefulWidget {
+  static route() => MaterialPageRoute(builder: (context) => const SignupPage());
   const SignupPage({super.key});
 
   @override
@@ -29,6 +32,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: Padding(
         padding: const EdgeInsets.all(15),
         child: Form(
@@ -55,19 +59,24 @@ class _SignupPageState extends State<SignupPage> {
               const SizedBox(height: 15),
               const AuthGradientButton(buttonText: "SignUp"),
               const SizedBox(height: 20),
-              RichText(
-                  text: TextSpan(
-                text: "Already have an account?",
-                style: Theme.of(context).textTheme.titleMedium,
-                children: [
-                  TextSpan(
-                    text: " Sign In",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: AppPallete.gradient3,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ],
-              )),
+              GestureDetector(
+                onTap: () {
+                  Navigator.push(context, SignInPage.route());
+                },
+                child: RichText(
+                    text: TextSpan(
+                  text: "Already have an account?",
+                  style: Theme.of(context).textTheme.titleMedium,
+                  children: [
+                    TextSpan(
+                      text: " SignIn",
+                      style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                          color: AppPallete.gradient3,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                )),
+              ),
             ],
           ),
         ),
